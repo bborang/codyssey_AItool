@@ -1,6 +1,6 @@
 # B3-1 · 서울 리전의 웹페이지를 인터넷에 배포하기
 
-AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 만들고, EC2에서 Nginx로 간단한 웹페이지를 제공했다. 실습 계정은 과제용 IAM 사용자 `codyssey-b3-1`이며 루트 계정으로 인프라를 만들지 않았다. HTTPS와 Docker 보너스 과제는 수행하지 않았다.
+AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 만들고, EC2에서 Nginx로 간단한 웹페이지를 제공했다. 
 
 > **실습 종료 안내:** 아래 공인 IP와 URL은 실습 당시의 접속 정보다. EC2와 네트워크 자원, 과제용 IAM 사용자·정책을 삭제했으므로 현재 이 과제 페이지에 접속할 수 없다. 삭제 근거는 [정리 체크리스트](docs/cleanup-checklist.md)에 기록했다.
 
@@ -30,7 +30,7 @@ AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 �
 4. 과제 전용 키 페어의 개인 키를 저장소 밖 `~/.ssh/`에 `600` 권한으로 저장했다. EC2에는 IMDSv2 필수, 표준 CPU 크레딧, 8 GiB gp3 및 종료 시 볼륨 삭제를 적용했다.
 5. [배포 스크립트](deploy-user-data.sh)를 EC2 user data로 실행해 Nginx를 설치·활성화하고 `Hello Cloud.` 페이지와 `/health` 응답 `OK`를 만들었다.
 
-실습용 정책의 저장소 사본은 [IAM 정책 JSON](iam/ec2-lab-policy.json)이다. EC2/VPC/보안 그룹의 필요한 생성·조회·삭제 작업을 서울 리전으로 제한했고 `AdministratorAccess`, S3, RDS 권한은 포함하지 않았다. 콘솔이 내부적으로 요청하는 일부 추가 조회 권한은 없어서 상세 탭에 오류가 표시됐다. 실제 오류와 CLI 확인 방법은 [트러블슈팅](docs/troubleshooting.md)에 남겼다. 프리 티어·크레딧 잔여량은 확인하지 못했으므로 무료였다고 주장하지 않는다. 짧은 실습 시간에도 EC2, EBS, 공인 IPv4에 비용이 발생할 수 있다.
+실습용 정책의 저장소 사본은 [IAM 정책 JSON](iam/ec2-lab-policy.json)이다. EC2/VPC/보안 그룹의 필요한 생성·조회·삭제 작업을 서울 리전으로 제한했고 `AdministratorAccess`, S3, RDS 권한은 포함하지 않았다. 콘솔이 내부적으로 요청하는 일부 추가 조회 권한은 없어서 상세 탭에 오류가 표시됐다. 실제 오류와 CLI 확인 방법은 [트러블슈팅](docs/troubleshooting.md)에 남겼다. 
 
 ## 실제 접속 검증
 
@@ -71,4 +71,4 @@ AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 �
 
 2026-11-08 00:40 KST에 이번 재실습의 EC2, EBS, 키 페어, 보안 그룹, 라우팅 테이블, Internet Gateway, 서브넷, VPC, 네트워크 인터페이스를 태그 및 ID로 재조회했고 모두 `[]`였다. EC2는 전날 `terminated`를 확인한 후 목록에서도 사라졌다. 별도 Elastic IP는 만들지 않았으며 자동 공인 IPv4는 인스턴스 종료와 함께 해제됐다. [삭제 후 실제 콘솔 화면](docs/screenshots/08-vpc-deleted.png)과 [항목별 체크리스트](docs/cleanup-checklist.md)를 참고한다.
 
-계정 소유자는 루트 콘솔에서 과제용 IAM 사용자 `codyssey-b3-1`과 고객 관리형 정책 `codyssey-b3-1-ec2-lab`을 삭제했다. 제공받은 콘솔 화면에는 정책 연결 대상 0건, 해당 사용자 삭제 완료 알림, 정책 삭제 완료 알림이 각각 표시된다. 삭제 후 과제용 IAM 자격 증명으로 재조회할 수는 없어 이 IAM 삭제 상태의 근거는 **사용자 제공 콘솔 캡처**다. Billing Dashboard의 최종 과금 반영 여부는 확인하지 못했다.
+계정 소유자는 루트 콘솔에서 과제용 IAM 사용자 `codyssey-b3-1`과 고객 관리형 정책 `codyssey-b3-1-ec2-lab`을 삭제했다. 제공받은 콘솔 화면에는 정책 연결 대상 0건, 해당 사용자 삭제 완료 알림, 정책 삭제 완료 알림이 각각 표시된다. 삭제 후 과제용 IAM 자격 증명으로 재조회할 수는 없어 이 IAM 삭제 상태의 근거는 **사용자 제공 콘솔 캡처**다. 
