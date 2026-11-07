@@ -2,7 +2,7 @@
 
 AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 만들고, EC2에서 Nginx로 간단한 웹페이지를 제공했다. 실습 계정은 과제용 IAM 사용자 `codyssey-b3-1`이며 루트 계정으로 인프라를 만들지 않았다. HTTPS와 Docker 보너스 과제는 수행하지 않았다.
 
-> **실습 종료 안내:** 아래 공인 IP와 URL은 실습 당시의 접속 정보다. 자원 정리 후에는 접속할 수 없다. 삭제 상태는 [정리 체크리스트](docs/cleanup-checklist.md)에 기록한다.
+> **실습 종료 안내:** 아래 공인 IP와 URL은 실습 당시의 접속 정보다. EC2와 네트워크 자원은 삭제됐으므로 현재 이 과제 페이지에 접속할 수 없다. IAM 사용자·정책의 계정 소유자 삭제는 별도로 확인 중이며 상태는 [정리 체크리스트](docs/cleanup-checklist.md)에 기록한다.
 
 ## 아키텍처와 구성 요소
 
@@ -61,5 +61,8 @@ AWS 서울 리전(`ap-northeast-2`)에 격리된 VPC와 퍼블릭 서브넷을 �
 | 4 | [서브넷에 연결한 라우팅 테이블의 인터넷 경로](docs/screenshots/04-public-route.png) |
 | 5 | [실행 중인 EC2와 공인 IP](docs/screenshots/05-ec2-running.png) |
 | 6 | [외부 Chrome 접속 결과](docs/screenshots/06-public-webpage.png) |
+| 7 | [과제 VPC 삭제 후 검색 결과 0건](docs/screenshots/08-vpc-deleted.png) |
 
-리소스별 최종 삭제 결과와 미생성 항목은 [정리 체크리스트](docs/cleanup-checklist.md)에 기록한다.
+## 정리 결과
+
+2026-11-08 00:40 KST에 이번 재실습의 EC2, EBS, 키 페어, 보안 그룹, 라우팅 테이블, Internet Gateway, 서브넷, VPC, 네트워크 인터페이스를 태그 및 ID로 재조회했고 모두 `[]`였다. EC2는 전날 `terminated`를 확인한 후 목록에서도 사라졌다. 별도 Elastic IP는 만들지 않았으며 자동 공인 IPv4는 인스턴스 종료와 함께 해제됐다. [삭제 후 실제 콘솔 화면](docs/screenshots/08-vpc-deleted.png)과 [항목별 체크리스트](docs/cleanup-checklist.md)를 참고한다. IAM 사용자·정책 삭제와 최종 Billing 확인은 아직 완료했다고 표시하지 않는다.
