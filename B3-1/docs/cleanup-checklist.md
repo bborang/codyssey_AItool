@@ -16,8 +16,8 @@
 | VPC | `vpc-0cae806ded5786900` | **삭제 완료**: 태그 재조회 `[]`, [콘솔 검색 결과 0건](screenshots/08-vpc-deleted.png) |
 | 네트워크 인터페이스 | EC2가 자동 생성 | **잔여 없음**: 이번 VPC ID로 조회 `[]` |
 | NAT Gateway / Load Balancer / RDS | 미생성 | 이번 재실습에서 생성하지 않음 |
-| IAM 사용자·고객 관리형 정책 | `codyssey-b3-1` · `codyssey-b3-1-ec2-lab` | **미완료**: 계정 소유자의 루트 콘솔 조작 필요. 삭제 후 확인 예정 |
+| IAM 사용자·고객 관리형 정책 | `codyssey-b3-1` · `codyssey-b3-1-ec2-lab` | **삭제 완료(사용자 제공 콘솔 증빙)**: [정책 연결 대상 0건](screenshots/09-iam-policy-no-attachments.png), [사용자 삭제 완료](screenshots/10-iam-user-deleted.png), [정책 삭제 완료](screenshots/11-iam-policy-deleted.png) |
 
 실제 정리 순서: EC2 종료 확인 → EBS·자동 공인 IP 해제 확인 → 키 페어와 로컬 개인 키 삭제 → 보안 그룹 삭제 → 라우팅 테이블 연결 해제·삭제 → Internet Gateway 분리·삭제 → 서브넷 삭제 → VPC 삭제. 2026-11-08 00:40 KST에 과제 태그로 EC2·EBS·VPC·서브넷·라우팅 테이블·게이트웨이·보안 그룹·키 페어·Elastic IP를 다시 조회했고 모두 `[]`였다. 이번 VPC ID의 네트워크 인터페이스도 `[]`였다. 다른 프로젝트 리소스는 삭제하지 않았다.
 
-**남은 확인:** IAM 사용자·정책 삭제는 과제용 IAM 권한으로 할 수 없어 계정 소유자가 루트 콘솔에서 진행해야 한다. Billing Dashboard의 최종 과금 반영 여부는 아직 확인되지 않았다.
+계정 소유자가 루트 콘솔에서 과제용 IAM 사용자와 정책을 삭제했다. 정책 삭제 성공 알림에는 정책 이름이 다시 표시되지 않으므로, 같은 작업 흐름에서 제공된 정책 이름·연결 대상 0건 화면과 계정 소유자의 완료 보고를 함께 근거로 삼았다. Billing Dashboard의 최종 과금 반영 여부는 아직 확인되지 않았다.
